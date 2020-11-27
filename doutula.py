@@ -38,22 +38,26 @@ def data_each(data):
             file.write(img_data)
 
 
-for page in range(1, 3611):
-    print('===============正在抓取第 {} 页数据================'.format(page))
+def fetch_images():
+    for page in range(1, 3611):
+        print('===============正在抓取第 {} 页数据================'.format(page))
 
-    # 获取要抓取的页面地址
-    url = 'https://www.doutula.com/photo/list/?page={}'.format(str(page))
+        # 获取要抓取的页面地址
+        url = 'https://www.doutula.com/photo/list/?page={}'.format(str(page))
 
-    # 模拟浏览器请求
-    response = requests.get(url=url, headers=headers)
+        # 模拟浏览器请求
+        response = requests.get(url=url, headers=headers)
 
-    # 获取抓取的页面源代码
-    html_data = response.text
+        # 获取抓取的页面源代码
+        html_data = response.text
 
-    # 解析源代码为正常的 html
-    selector = parsel.Selector(html_data)
+        # 解析源代码为正常的 html
+        selector = parsel.Selector(html_data)
 
-    # 利用 xpath 解析出符合特征的元素信息
-    resp_list = selector.xpath('//a[@class="col-xs-6 col-sm-3"]')
+        # 利用 xpath 解析出符合特征的元素信息
+        resp_list = selector.xpath('//a[@class="col-xs-6 col-sm-3"]')
 
-    data_each(resp_list)
+        data_each(resp_list)
+
+
+fetch_images()
