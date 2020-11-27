@@ -1,3 +1,3 @@
-vim text editor CLI tools:
-:wq
-:q!
+# vim text editor CLI tools:
+# :wq
+# :q!
